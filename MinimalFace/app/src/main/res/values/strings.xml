@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="watch_face_name">Minimal Digital</string>
+
+    <string name="cfg_accent">Акцент</string>
+    <string name="cfg_digits">Цифры</string>
+    <string name="cfg_bg">Фон</string>
+    <string name="cfg_weather">Полоска погоды</string>
+
+    <string name="w_temp">Температура и погода</string>
+    <string name="w_rain">Вероятность осадков</string>
+    <string name="w_uv">УФ-индекс</string>
+
+    <string name="slot_app1">Ярлык 1</string>
+    <string name="slot_app2">Ярлык 2</string>
+    <string name="slot_app3">Ярлык 3</string>
+    <string name="slot_app4">Ярлык 4</string>
+
+    <string name="c_navy">Тёмно-синий</string>
+    <string name="c_blue">Синий</string>
+    <string name="c_lblue">Голубой</string>
+    <string name="c_teal">Бирюзовый</string>
+    <string name="c_dgreen">Тёмно-зелёный</string>
+    <string name="c_green">Зелёный</string>
+    <string name="c_lime">Лайм</string>
+    <string name="c_yellow">Жёлтый</string>
+    <string name="c_orange">Оранжевый</string>
+    <string name="c_red">Красный</string>
+    <string name="c_pink">Розовый</string>
+    <string name="c_violet">Фиолетовый</string>
+    <string name="c_white">Белый</string>
+    <string name="c_gray">Серый</string>
+    <string name="c_lgray">Светло-серый</string>
+    <string name="c_black">Чёрный</string>
+    <string name="c_dgray">Тёмно-серый</string>
+    <string name="c_dnavy">Ночной синий</string>
+    <string name="c_dforest">Ночной зелёный</string>
+</resources>
