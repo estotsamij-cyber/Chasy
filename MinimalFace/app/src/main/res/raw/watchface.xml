@@ -18,7 +18,7 @@
             <ColorOption id="11" displayName="c_violet" colors="#9B6BFF" />
             <ColorOption id="12" displayName="c_white" colors="#FFFFFF" />
             <ColorOption id="13" displayName="c_gray" colors="#8E8E93" />
-        </ColorConfigurations>
+        </ColorConfiguration>
 
         <ColorConfiguration id="digits" displayName="cfg_digits" defaultValue="0">
             <ColorOption id="0" displayName="c_white" colors="#FFFFFF" />
@@ -62,7 +62,7 @@
         <Group x="0" y="0" width="450" height="450" name="live">
             <Variant mode="AMBIENT" target="alpha" value="0" />
 
-            <!-- Левая дуга (Шаги) — симметрично правой (от 220 до 320 против часовой) -->
+            <!-- Левая дуга (Шаги) -->
             <PartDraw x="0" y="0" width="450" height="450">
                 <Arc centerX="225" centerY="225" width="430" height="430" startAngle="220" endAngle="320">
                     <Stroke color="#33808080" thickness="10" cap="ROUND" />
@@ -73,7 +73,7 @@
                 </Arc>
             </PartDraw>
 
-            <!-- Правая дуга (Батарея) — от 40 до 140 по часовой -->
+            <!-- Правая дуга (Батарея) -->
             <PartDraw x="0" y="0" width="450" height="450">
                 <Arc centerX="225" centerY="225" width="430" height="430" startAngle="40" endAngle="140">
                     <Stroke color="#33808080" thickness="10" cap="ROUND" />
@@ -103,7 +103,7 @@
                 </Ellipse>
             </PartDraw>
 
-            <!-- Текст шагов слева (выровнен по центру левой дуги) -->
+            <!-- Текст шагов слева -->
             <PartText x="45" y="145" width="120" height="30">
                 <Text align="CENTER">
                     <Font family="SYNC_TO_DEVICE" size="18" color="[CONFIGURATION.accent]">
@@ -112,7 +112,7 @@
                 </Text>
             </PartText>
 
-            <!-- Текст батареи справа (выровнен по центру правой дуги) -->
+            <!-- Текст батареи справа -->
             <PartText x="285" y="145" width="120" height="30">
                 <Text align="CENTER">
                     <Font family="SYNC_TO_DEVICE" size="18" color="[CONFIGURATION.accent]">
