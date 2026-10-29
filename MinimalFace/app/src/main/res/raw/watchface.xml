@@ -4,48 +4,23 @@
 
     <UserConfigurations>
         <ColorConfiguration id="accent" displayName="cfg_accent" defaultValue="1">
-            <ColorOption id="0" displayName="c_navy" colors="#1F3FA8" />
-            <ColorOption id="1" displayName="c_blue" colors="#2F7BFF" />
-            <ColorOption id="2" displayName="c_lblue" colors="#6EC6FF" />
-            <ColorOption id="3" displayName="c_teal" colors="#19D3C5" />
-            <ColorOption id="4" displayName="c_dgreen" colors="#11804F" />
-            <ColorOption id="5" displayName="c_green" colors="#34C759" />
-            <ColorOption id="6" displayName="c_lime" colors="#B7E34A" />
-            <ColorOption id="7" displayName="c_yellow" colors="#FFD60A" />
-            <ColorOption id="8" displayName="c_orange" colors="#FF9500" />
-            <ColorOption id="9" displayName="c_red" colors="#FF3B30" />
-            <ColorOption id="10" displayName="c_pink" colors="#FF5FA2" />
-            <ColorOption id="11" displayName="c_violet" colors="#9B6BFF" />
-            <ColorOption id="12" displayName="c_white" colors="#FFFFFF" />
-            <ColorOption id="13" displayName="c_gray" colors="#8E8E93" />
-        </ColorConfigurations>
+            <ColorOption id="0" displayName="c_blue" colors="#2F7BFF" />
+            <ColorOption id="1" displayName="c_orange" colors="#FF9500" />
+            <ColorOption id="2" displayName="c_green" colors="#34C759" />
+            <ColorOption id="3" displayName="c_red" colors="#FF3B30" />
+            <ColorOption id="4" displayName="c_white" colors="#FFFFFF" />
+        </ColorConfiguration>
 
         <ColorConfiguration id="digits" displayName="cfg_digits" defaultValue="0">
             <ColorOption id="0" displayName="c_white" colors="#FFFFFF" />
-            <ColorOption id="1" displayName="c_lgray" colors="#D1D1D6" />
-            <ColorOption id="2" displayName="c_blue" colors="#8FB8FF" />
-            <ColorOption id="3" displayName="c_lblue" colors="#6EC6FF" />
-            <ColorOption id="4" displayName="c_green" colors="#7DF0C2" />
-            <ColorOption id="5" displayName="c_lime" colors="#B7E34A" />
-            <ColorOption id="6" displayName="c_yellow" colors="#FFD60A" />
-            <ColorOption id="7" displayName="c_orange" colors="#FF9500" />
-            <ColorOption id="8" displayName="c_pink" colors="#FF8FC2" />
-            <ColorOption id="9" displayName="c_black" colors="#000000" />
+            <ColorOption id="1" displayName="c_gray" colors="#8E8E93" />
+            <ColorOption id="2" displayName="c_yellow" colors="#FFD60A" />
         </ColorConfiguration>
 
         <ColorConfiguration id="bg" displayName="cfg_bg" defaultValue="0">
             <ColorOption id="0" displayName="c_black" colors="#000000" />
             <ColorOption id="1" displayName="c_dgray" colors="#141414" />
-            <ColorOption id="2" displayName="c_dnavy" colors="#0A1630" />
-            <ColorOption id="3" displayName="c_dforest" colors="#0A2218" />
-            <ColorOption id="4" displayName="c_white" colors="#FFFFFF" />
         </ColorConfiguration>
-
-        <ListConfiguration id="weather_mode" displayName="cfg_weather" defaultValue="0">
-            <ListOption id="0" displayName="w_temp" />
-            <ListOption id="1" displayName="w_rain" />
-            <ListOption id="2" displayName="w_uv" />
-        </ListConfiguration>
     </UserConfigurations>
 
     <Scene backgroundColor="#ff000000">
@@ -62,7 +37,7 @@
         <Group x="0" y="0" width="450" height="450" name="live">
             <Variant mode="AMBIENT" target="alpha" value="0" />
 
-            <!-- Левая дуга (Шаги): от нижнего левого (210°) вверх до верхне-левого (330°) -->
+            <!-- Левая дуга (Шаги) -->
             <PartDraw x="0" y="0" width="450" height="450">
                 <Arc centerX="225" centerY="225" width="430" height="430" startAngle="210" endAngle="330">
                     <Stroke color="#33808080" thickness="10" cap="ROUND" />
@@ -73,7 +48,7 @@
                 </Arc>
             </PartDraw>
 
-            <!-- Правая дуга (Батарея): от нижнего правого (150°) вверх до верхне-правого (30°) -->
+            <!-- Правая дуга (Батарея) -->
             <PartDraw x="0" y="0" width="450" height="450">
                 <Arc centerX="225" centerY="225" width="430" height="430" startAngle="150" endAngle="30" direction="COUNTER_CLOCKWISE">
                     <Stroke color="#33808080" thickness="10" cap="ROUND" />
@@ -120,53 +95,6 @@
                     </Font>
                 </Text>
             </PartText>
-
-            <!-- Блок погоды -->
-            <Condition>
-                <Expressions>
-                    <Expression name="weather_ok">[WEATHER.IS_AVAILABLE]</Expression>
-                </Expressions>
-                <Compare expression="weather_ok">
-                    <ListConfiguration id="weather_mode">
-                        <ListOption id="0">
-                            <PartText x="105" y="222" width="240" height="34">
-                                <Text align="CENTER" ellipsis="TRUE">
-                                    <Font family="SYNC_TO_DEVICE" size="20" color="[CONFIGURATION.digits]">
-                                        <Template>%d° %s<Parameter expression="round([WEATHER.TEMPERATURE])" /><Parameter expression="[WEATHER.CONDITION_NAME]" /></Template>
-                                    </Font>
-                                </Text>
-                            </PartText>
-                        </ListOption>
-                        <ListOption id="1">
-                            <PartText x="105" y="222" width="240" height="34">
-                                <Text align="CENTER" ellipsis="TRUE">
-                                    <Font family="SYNC_TO_DEVICE" size="20" color="[CONFIGURATION.digits]">
-                                        <Template>Осадки %d%%<Parameter expression="round([WEATHER.CHANCE_OF_PRECIPITATION])" /></Template>
-                                    </Font>
-                                </Text>
-                            </PartText>
-                        </ListOption>
-                        <ListOption id="2">
-                            <PartText x="105" y="222" width="240" height="34">
-                                <Text align="CENTER" ellipsis="TRUE">
-                                    <Font family="SYNC_TO_DEVICE" size="20" color="[CONFIGURATION.digits]">
-                                        <Template>УФ-индекс %d<Parameter expression="round([WEATHER.UV_INDEX])" /></Template>
-                                    </Font>
-                                </Text>
-                            </PartText>
-                        </ListOption>
-                    </ListConfiguration>
-                </Compare>
-                <Default>
-                    <PartText x="105" y="222" width="240" height="34">
-                        <Text align="CENTER">
-                            <Font family="SYNC_TO_DEVICE" size="20" color="[CONFIGURATION.digits]">
-                                <![CDATA[—]]>
-                            </Font>
-                        </Text>
-                    </PartText>
-                </Default>
-            </Condition>
 
             <!-- Пульс -->
             <PartText x="125" y="262" width="200" height="34">
