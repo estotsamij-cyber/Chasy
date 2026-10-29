@@ -18,7 +18,7 @@
             <ColorOption id="11" displayName="c_violet" colors="#9B6BFF" />
             <ColorOption id="12" displayName="c_white" colors="#FFFFFF" />
             <ColorOption id="13" displayName="c_gray" colors="#8E8E93" />
-        </ColorConfiguration>
+        </ColorConfigurations>
 
         <ColorConfiguration id="digits" displayName="cfg_digits" defaultValue="0">
             <ColorOption id="0" displayName="c_white" colors="#FFFFFF" />
@@ -62,24 +62,24 @@
         <Group x="0" y="0" width="450" height="450" name="live">
             <Variant mode="AMBIENT" target="alpha" value="0" />
 
-            <!-- Левая дуга (Шаги) -->
+            <!-- Левая дуга (Шаги): от нижнего левого (210°) вверх до верхне-левого (330°) -->
             <PartDraw x="0" y="0" width="450" height="450">
-                <Arc centerX="225" centerY="225" width="430" height="430" startAngle="220" endAngle="320">
+                <Arc centerX="225" centerY="225" width="430" height="430" startAngle="210" endAngle="330">
                     <Stroke color="#33808080" thickness="10" cap="ROUND" />
                 </Arc>
-                <Arc centerX="225" centerY="225" width="430" height="430" startAngle="320" endAngle="320" direction="COUNTER_CLOCKWISE">
-                    <Transform target="endAngle" value="320 - (clamp([STEP_PERCENT], 0, 100) * 1.0)" />
+                <Arc centerX="225" centerY="225" width="430" height="430" startAngle="210" endAngle="210">
+                    <Transform target="endAngle" value="210 + (clamp([STEP_PERCENT], 0, 100) * 1.2)" />
                     <Stroke color="[CONFIGURATION.accent]" thickness="10" cap="ROUND" />
                 </Arc>
             </PartDraw>
 
-            <!-- Правая дуга (Батарея) -->
+            <!-- Правая дуга (Батарея): от нижнего правого (150°) вверх до верхне-правого (30°) -->
             <PartDraw x="0" y="0" width="450" height="450">
-                <Arc centerX="225" centerY="225" width="430" height="430" startAngle="40" endAngle="140">
+                <Arc centerX="225" centerY="225" width="430" height="430" startAngle="150" endAngle="30" direction="COUNTER_CLOCKWISE">
                     <Stroke color="#33808080" thickness="10" cap="ROUND" />
                 </Arc>
-                <Arc centerX="225" centerY="225" width="430" height="430" startAngle="40" endAngle="40">
-                    <Transform target="endAngle" value="40 + (clamp([BATTERY_PERCENT], 0, 100) * 1.0)" />
+                <Arc centerX="225" centerY="225" width="430" height="430" startAngle="150" endAngle="150" direction="COUNTER_CLOCKWISE">
+                    <Transform target="endAngle" value="150 - (clamp([BATTERY_PERCENT], 0, 100) * 1.2)" />
                     <Stroke color="[CONFIGURATION.accent]" thickness="10" cap="ROUND" />
                 </Arc>
             </PartDraw>
@@ -103,8 +103,8 @@
                 </Ellipse>
             </PartDraw>
 
-            <!-- Текст шагов слева -->
-            <PartText x="45" y="145" width="120" height="30">
+            <!-- Текст шагов слева сверху -->
+            <PartText x="50" y="112" width="130" height="30">
                 <Text align="CENTER">
                     <Font family="SYNC_TO_DEVICE" size="18" color="[CONFIGURATION.accent]">
                         <Template>👟 %d<Parameter expression="[STEP_COUNT]" /></Template>
@@ -112,8 +112,8 @@
                 </Text>
             </PartText>
 
-            <!-- Текст батареи справа -->
-            <PartText x="285" y="145" width="120" height="30">
+            <!-- Текст батареи справа сверху -->
+            <PartText x="270" y="112" width="130" height="30">
                 <Text align="CENTER">
                     <Font family="SYNC_TO_DEVICE" size="18" color="[CONFIGURATION.accent]">
                         <Template>🔋 %d%%<Parameter expression="[BATTERY_PERCENT]" /></Template>
@@ -198,12 +198,11 @@
 
         <!-- Слоты быстрых приложений -->
         <ComplicationSlot slotId="0" name="app1" displayName="slot_app1" supportedTypes="MONOCHROMATIC_IMAGE SMALL_IMAGE" x="88" y="306" width="58" height="58">
-            <DefaultProviderPolicy defaultSystemProvider="APP_SHORTCUT" defaultSystemProviderType="MONOCHROMATIC_IMAGE" />
             <BoundingOval x="0" y="0" width="58" height="58" />
             <Complication type="MONOCHROMATIC_IMAGE">
                 <PartImage x="13" y="13" width="32" height="32">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
-                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" tintColor="[CONFIGURATION.accent]" />
+                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
                 </PartImage>
             </Complication>
             <Complication type="SMALL_IMAGE">
@@ -214,12 +213,11 @@
             </Complication>
         </ComplicationSlot>
         <ComplicationSlot slotId="1" name="app2" displayName="slot_app2" supportedTypes="MONOCHROMATIC_IMAGE SMALL_IMAGE" x="160" y="306" width="58" height="58">
-            <DefaultProviderPolicy defaultSystemProvider="APP_SHORTCUT" defaultSystemProviderType="MONOCHROMATIC_IMAGE" />
             <BoundingOval x="0" y="0" width="58" height="58" />
             <Complication type="MONOCHROMATIC_IMAGE">
                 <PartImage x="13" y="13" width="32" height="32">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
-                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" tintColor="[CONFIGURATION.accent]" />
+                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
                 </PartImage>
             </Complication>
             <Complication type="SMALL_IMAGE">
@@ -230,12 +228,11 @@
             </Complication>
         </ComplicationSlot>
         <ComplicationSlot slotId="2" name="app3" displayName="slot_app3" supportedTypes="MONOCHROMATIC_IMAGE SMALL_IMAGE" x="232" y="306" width="58" height="58">
-            <DefaultProviderPolicy defaultSystemProvider="APP_SHORTCUT" defaultSystemProviderType="MONOCHROMATIC_IMAGE" />
             <BoundingOval x="0" y="0" width="58" height="58" />
             <Complication type="MONOCHROMATIC_IMAGE">
                 <PartImage x="13" y="13" width="32" height="32">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
-                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" tintColor="[CONFIGURATION.accent]" />
+                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
                 </PartImage>
             </Complication>
             <Complication type="SMALL_IMAGE">
@@ -246,12 +243,11 @@
             </Complication>
         </ComplicationSlot>
         <ComplicationSlot slotId="3" name="app4" displayName="slot_app4" supportedTypes="MONOCHROMATIC_IMAGE SMALL_IMAGE" x="304" y="306" width="58" height="58">
-            <DefaultProviderPolicy defaultSystemProvider="APP_SHORTCUT" defaultSystemProviderType="MONOCHROMATIC_IMAGE" />
             <BoundingOval x="0" y="0" width="58" height="58" />
             <Complication type="MONOCHROMATIC_IMAGE">
                 <PartImage x="13" y="13" width="32" height="32">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
-                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" tintColor="[CONFIGURATION.accent]" />
+                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
                 </PartImage>
             </Complication>
             <Complication type="SMALL_IMAGE">
