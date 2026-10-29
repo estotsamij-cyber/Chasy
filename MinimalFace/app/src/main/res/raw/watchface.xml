@@ -50,6 +50,7 @@
 
     <Scene backgroundColor="#ff000000">
 
+        <!-- Фон -->
         <PartDraw x="0" y="0" width="450" height="450">
             <Rectangle x="0" y="0" width="450" height="450">
                 <Fill color="[CONFIGURATION.bg]">
@@ -61,23 +62,29 @@
         <Group x="0" y="0" width="450" height="450" name="live">
             <Variant mode="AMBIENT" target="alpha" value="0" />
 
+            <!-- Левая дуга (Шаги) -->
             <PartDraw x="0" y="0" width="450" height="450">
-                <Arc centerX="225" centerY="225" width="430" height="430" startAngle="220" endAngle="320">
+                <Arc centerX="225" centerY="225" width="430" height="430" startAngle="140" endAngle="220">
                     <Stroke color="#33808080" thickness="10" cap="ROUND" />
                 </Arc>
-                <Arc centerX="225" centerY="225" width="430" height="430" startAngle="220" endAngle="220">
-                    <Transform target="endAngle" value="220 + clamp([STEP_PERCENT], 0, 100)" />
-                    <Stroke color="[CONFIGURATION.accent]" thickness="10" cap="ROUND" />
-                </Arc>
-                <Arc centerX="225" centerY="225" width="430" height="430" startAngle="40" endAngle="140">
-                    <Stroke color="#33808080" thickness="10" cap="ROUND" />
-                </Arc>
-                <Arc centerX="225" centerY="225" width="430" height="430" startAngle="140" endAngle="140" direction="COUNTER_CLOCKWISE">
-                    <Transform target="endAngle" value="140 - clamp([BATTERY_PERCENT], 0, 100)" />
+                <Arc centerX="225" centerY="225" width="430" height="430" startAngle="220" endAngle="220" direction="COUNTER_CLOCKWISE">
+                    <Transform target="endAngle" value="220 - (clamp([STEP_PERCENT], 0, 100) * 0.8)" />
                     <Stroke color="[CONFIGURATION.accent]" thickness="10" cap="ROUND" />
                 </Arc>
             </PartDraw>
 
+            <!-- Правая дуга (Батарея) -->
+            <PartDraw x="0" y="0" width="450" height="450">
+                <Arc centerX="225" centerY="225" width="430" height="430" startAngle="320" endAngle="40">
+                    <Stroke color="#33808080" thickness="10" cap="ROUND" />
+                </Arc>
+                <Arc centerX="225" centerY="225" width="430" height="430" startAngle="40" endAngle="40">
+                    <Transform target="endAngle" value="40 + (clamp([BATTERY_PERCENT], 0, 100) * 0.8)" />
+                    <Stroke color="[CONFIGURATION.accent]" thickness="10" cap="ROUND" />
+                </Arc>
+            </PartDraw>
+
+            <!-- Рамка погоды и кружки приложений -->
             <PartDraw x="0" y="0" width="450" height="450">
                 <RoundRectangle x="105" y="222" width="240" height="34" cornerRadiusX="17" cornerRadiusY="17">
                     <Stroke color="[CONFIGURATION.accent]" thickness="2" />
@@ -96,6 +103,25 @@
                 </Ellipse>
             </PartDraw>
 
+            <!-- Текст шагов слева сверху -->
+            <PartText x="60" y="38" width="140" height="30">
+                <Text align="CENTER">
+                    <Font family="SYNC_TO_DEVICE" size="18" color="[CONFIGURATION.accent]">
+                        <Template>👟 %d<Parameter expression="[STEP_COUNT]" /></Template>
+                    </Font>
+                </Text>
+            </PartText>
+
+            <!-- Текст батареи справа сверху -->
+            <PartText x="250" y="38" width="140" height="30">
+                <Text align="CENTER">
+                    <Font family="SYNC_TO_DEVICE" size="18" color="[CONFIGURATION.accent]">
+                        <Template>🔋 %d%%<Parameter expression="[BATTERY_PERCENT]" /></Template>
+                    </Font>
+                </Text>
+            </PartText>
+
+            <!-- Блок погоды -->
             <Condition>
                 <Expressions>
                     <Expression name="weather_ok">[WEATHER.IS_AVAILABLE]</Expression>
@@ -142,6 +168,7 @@
                 </Default>
             </Condition>
 
+            <!-- Пульс -->
             <PartText x="125" y="262" width="200" height="34">
                 <Text align="CENTER">
                     <Font family="SYNC_TO_DEVICE" size="28" color="[CONFIGURATION.digits]">
@@ -151,6 +178,7 @@
             </PartText>
         </Group>
 
+        <!-- Дата -->
         <PartText x="75" y="58" width="300" height="34">
             <Text align="CENTER">
                 <Font family="SYNC_TO_DEVICE" size="26" color="[CONFIGURATION.accent]">
@@ -159,6 +187,7 @@
             </Text>
         </PartText>
 
+        <!-- Цифровые часы -->
         <DigitalClock x="0" y="92" width="450" height="124">
             <TimeText x="0" y="0" width="450" height="124" format="hh:mm" hourFormat="TWENTY_FOUR" align="CENTER">
                 <Font family="SYNC_TO_DEVICE" size="112" weight="NORMAL" color="[CONFIGURATION.digits]">
@@ -167,13 +196,14 @@
             </TimeText>
         </DigitalClock>
 
+        <!-- Слоты быстрых приложений -->
         <ComplicationSlot slotId="0" name="app1" displayName="slot_app1" supportedTypes="MONOCHROMATIC_IMAGE SMALL_IMAGE" x="88" y="306" width="58" height="58">
             <DefaultProviderPolicy defaultSystemProvider="APP_SHORTCUT" defaultSystemProviderType="MONOCHROMATIC_IMAGE" />
             <BoundingOval x="0" y="0" width="58" height="58" />
             <Complication type="MONOCHROMATIC_IMAGE">
                 <PartImage x="13" y="13" width="32" height="32">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
-                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" tintColor="[CONFIGURATION.digits]" />
+                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" tintColor="[CONFIGURATION.accent]" />
                 </PartImage>
             </Complication>
             <Complication type="SMALL_IMAGE">
@@ -189,7 +219,7 @@
             <Complication type="MONOCHROMATIC_IMAGE">
                 <PartImage x="13" y="13" width="32" height="32">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
-                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" tintColor="[CONFIGURATION.digits]" />
+                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" tintColor="[CONFIGURATION.accent]" />
                 </PartImage>
             </Complication>
             <Complication type="SMALL_IMAGE">
@@ -205,7 +235,7 @@
             <Complication type="MONOCHROMATIC_IMAGE">
                 <PartImage x="13" y="13" width="32" height="32">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
-                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" tintColor="[CONFIGURATION.digits]" />
+                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" tintColor="[CONFIGURATION.accent]" />
                 </PartImage>
             </Complication>
             <Complication type="SMALL_IMAGE">
@@ -221,7 +251,7 @@
             <Complication type="MONOCHROMATIC_IMAGE">
                 <PartImage x="13" y="13" width="32" height="32">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
-                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" tintColor="[CONFIGURATION.digits]" />
+                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" tintColor="[CONFIGURATION.accent]" />
                 </PartImage>
             </Complication>
             <Complication type="SMALL_IMAGE">
