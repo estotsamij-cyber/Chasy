@@ -79,7 +79,7 @@
             </PartDraw>
 
             <PartDraw x="0" y="0" width="450" height="450">
-                <RoundRectangle x="105" y="232" width="240" height="32" cornerRadiusX="16" cornerRadiusY="16">
+                <RoundRectangle x="70" y="232" width="310" height="32" cornerRadiusX="16" cornerRadiusY="16">
                     <Stroke color="[CONFIGURATION.accent]" thickness="2" />
                 </RoundRectangle>
                 <Ellipse x="88" y="304" width="58" height="58">
@@ -103,7 +103,7 @@
                 <Compare expression="weather_ok">
                     <ListConfiguration id="weather_mode">
                         <ListOption id="0">
-                            <PartText x="105" y="232" width="240" height="32">
+                            <PartText x="70" y="232" width="310" height="32">
                                 <Text align="CENTER" ellipsis="TRUE">
                                     <Font family="SYNC_TO_DEVICE" size="20" color="[CONFIGURATION.digits]">
                                         <Template>%d° %s<Parameter expression="round([WEATHER.TEMPERATURE])" /><Parameter expression="[WEATHER.CONDITION_NAME]" /></Template>
@@ -112,7 +112,7 @@
                             </PartText>
                         </ListOption>
                         <ListOption id="1">
-                            <PartText x="105" y="232" width="240" height="32">
+                            <PartText x="70" y="232" width="310" height="32">
                                 <Text align="CENTER" ellipsis="TRUE">
                                     <Font family="SYNC_TO_DEVICE" size="20" color="[CONFIGURATION.digits]">
                                         <Template>Осадки %d%%<Parameter expression="round([WEATHER.CHANCE_OF_PRECIPITATION])" /></Template>
@@ -121,7 +121,7 @@
                             </PartText>
                         </ListOption>
                         <ListOption id="2">
-                            <PartText x="105" y="232" width="240" height="32">
+                            <PartText x="70" y="232" width="310" height="32">
                                 <Text align="CENTER" ellipsis="TRUE">
                                     <Font family="SYNC_TO_DEVICE" size="20" color="[CONFIGURATION.digits]">
                                         <Template>УФ-индекс %d<Parameter expression="round([WEATHER.UV_INDEX])" /></Template>
@@ -132,7 +132,7 @@
                     </ListConfiguration>
                 </Compare>
                 <Default>
-                    <PartText x="105" y="232" width="240" height="32">
+                    <PartText x="70" y="232" width="310" height="32">
                         <Text align="CENTER">
                             <Font family="SYNC_TO_DEVICE" size="20" color="[CONFIGURATION.digits]">
                                 <![CDATA[—]]>
